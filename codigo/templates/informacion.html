@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Informaciones</title>
+    {% load static %}
+    <!--Icono -->
+    <link rel="shortcut icon" href="{% static 'img/basico.webp' %}"> 
+    <!--Acihivos Estaticos y librerias.-->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/jquery.validate.js"></script>
+    <script src="{% static 'js/Formulario popup.js' %}"></script>
+
+    <script>
+        function showOptions() {
+            document.querySelector('.dropdown-content').style.display = 'block';
+        }
+
+        function hideOptions() {
+            document.querySelector('.dropdown-content').style.display = 'none';
+        }
+    </script>
+    
+</head>
+
+
+<body>
+    <!--Cabeza de pagina-->
+    <header id="header"  >
+        <div>
+        <!--Inicio menu desplegable (Hamburguesa).-->
+        <nav class="navbar navbar-expand-sm navbar-dark" style="background-color: rgb(0, 0, 0);">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#opciones">
+            <span class="navbar-toggler-icon"></span>
+            </button>
+            <!--Logo Cheemis.-->
+            <a href="{% static 'inicio.html' %}" class="navbar-brand" id="logocheemis">
+                <img src="{% static 'img/CHEEMS SHOP TRANSPARENTE.png' %}" width="65px" height="65px" alt="Cheemis Shop logo.png"> <!--Texto alternativo y tamaño de foto-->
+                Cheemis Pet Shop 
+            </a>
+
+            <div class= "collapse navbar-collapse " id="opciones" >
+                <!--Elementos dentro del menu desplegable.-->
+                <ul class="navbar-nav" >
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'inicio' %}" > Inicio </a>
+                    </li> 
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'catalogo_productos' %}" > Catálogo de Procuctos </a>
+                    </li> 
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'informacion' %}" > Quienes Somos </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'carrito_compras' %}" > Carrito de compras </a>
+                    </li>
+                    
+
+                    {% if user.is_staff %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'historial' %}"  > Historial de ventas </a>
+                    </li>
+                    {% endif %}
+                </ul>
+
+                
+            </div> 
+            <!--Boton inicio de sesion-->
+            
+                {% if user.is_authenticated %}
+                
+
+                <div class="dropdown">
+                    
+                    <a onclick="showOptions()" id="iniciosesion"   style="background-color: transparent;">
+                        <img src="{% static 'img/inicio-transparente.png' %}" width="40px">{{user.username}}
+                    </a>
+                    <div class="dropdown-content" onmouseout="hideOptions()">
+                        <div class="dropdown-content">
+                            <a href="{% url 'logout' %}" id="iniciosesion"   style="background-color: transparent;">
+                                Cerrar sesión
+                            </a>
+                            
+                            
+                        </div>
+                </div>
+                    
+                {% else %}
+
+                    <div class="dropdown">
+                            <a onclick="showOptions()" id="iniciosesion"   style="background-color: transparent;">
+                                <img src="{% static 'img/inicio-transparente.png' %}" width="40px">Usuario
+                            </a>
+                        
+                        <div class="dropdown-content" onclick="hideOptions()">
+                            <div class="dropdown-content">
+                                <a href="{% url 'login' %}" id="iniciosesion"   style="background-color: transparent;">
+                                    Iniciar Sesion
+                                </a>
+                                <a href="{% url 'registrar' %}" id="iniciosesion"   style="background-color: transparent;">
+                                    Registrarse
+                                </a>
+                                
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
+            </div> 
+        </nav> <!--Cierre de menu -->
+        
+        
+        </div>
+    </header><!--Cierre de cabezal de pagina.-->
+
+    <!--Cuerpo-->
+
+
+    
+<div clas="container" style="background-color: rgb(0, 0, 0);" >
+        <br>
+
+    <div class="container-fluid">
+        <div class="jumbotron" style="background-color: black;" >
+            <div class="row">
+                <div class="col-sm-6 ">
+                    <p id="titulo" id="centrar"> <span style="color: rgb(200, 165, 102);">¿Que es Che</span><span style="color: rgb(188, 106, 12)">emis Shop?</span> </p>  
+                    <p id="parrafo">
+                        Cheemis Shop es una tienda de productos exclusivos para distintos tipos de mascotas creada 
+                        con el objetivo de ayudar a una funcadion sin fines de lucro, la idea inicial fue desarrollada
+                        inicial por un grupo de amigos en una red social y la creacion de la pagina web por un grupo de 
+                        estudiantes de DuocUc.
+                        
+                    </p>
+                </div>
+                <div class="col-sm-6">
+                    <div>
+                    <img src="{% static 'img/Cheemis logo grande transparente footer.png' %}"  id="imagen">
+                    </div>
+                </div>
+            </div>
+        </div>
+            
+            <div class="jumbotron" style="background-color: black;" >
+                <div class="row">
+                <div class="col-sm-6 ">
+                    <div>
+                    <img src="{% static 'img/cropped-1920-1080-1151373.png' %}" id="imagen" id="centrar" >
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <p id="titulo"> <span style="color: rgb(200, 165, 102);">Creación de </span><span style="color: rgb(188, 106, 12)">Cheemis Shop</span> </p> 
+                    <p id="parrafo">Con la presente necesidad de una mejor opcion de venta, despacho y organizacion se procedio a realización
+                        de la pagina web "Cheemis Shop". La cual busca optimizar todo lo anterior mediante la entrega de 
+                        la pagina web mencionada anteriormente, la cual cuenta con mejoras de catalogo junato a un carrito de compras, un link de aporte 
+                        directo a la fundación, una seccion de infromacion sobre quienes somos.
+                    Permitiendo una mayor transparecnia hacia los clientes junto a una mayor gestion de todos los procesos logisticos.</p>
+                </div>
+            </div>
+        </div>
+        
+
+            <div class="jumbotron" style="background-color: black;" >
+                <div class="row">
+                    <div class="col-sm-6 ">
+                        <p id="titulo"> <span style="color: rgb(200, 165, 102);">Creación </span><span style="color: rgb(188, 106, 12)">del logo.</span> </p> 
+                    
+                        <p id="parrafo">La creacion comenzo por una lluvia de ideas entre los 2 grupos, con la idea principal de un logo 
+                        atractivo, chistoso y que representara la tienda. llegando a la conclusion, con el logo presente ,el cual se 
+                        entiende como un meme ,siendo es chistoso, atractivo y original.Permitiendo repesentar muy bien la tienda.
+                        </p>
+                        <p id="parrafo">La creacion del logotipo fluctuo desde un cheem basico con accesorio canino como una correa y un fondo
+                        poco atractivo, hasta el cheemi samurai con accesorios de alimentacion, con fondo dorado y una "pancarta" 
+                        con Cheemis escrito.
+                        </p>
+                    
+                    
+                </div>
+                <div class="col-sm-6">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <img src="{% static 'img/basico.webp' %}" id="imagen" style="float: left;"  >
+                            <img src="{% static 'img/cheemis_shop.png' %}" id="imagen" style="float: left;"  >
+                        </div>    
+                        <div class="col-sm-6">
+                            <img src="{% static 'img/cheems_1.png' %}  " id="imagen" style="float: left;" >
+                            <img src="{% static 'img/CHEEMS SHOP TRANSPARENTE.png' %}" id="imagen" style="float: left;"  >
+                        </div> 
+                </div> 
+            </div>                           
+        </div>
+        
+    </div>
+    <div class="jumbotron" style="background-color: black;">
+        <p id="titulo"> <span style="color: rgb(200, 165, 102);">Video </span><span style="color: rgb(188, 106, 12)">Informativo.</span> </p>
+        <div class="video-responsive">
+            <p id="titulo"> <span style="color: rgb(200, 165, 102);">Video </span><span style="color: rgb(188, 106, 12)">Informativo.</span> </p> 
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/rsTLyukvxGU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+</div>
+
+
+</div>
+
+<!--Inicio Del mapa y del Cuadro de donaciones.-->
+<div class="jumbotron" style="background-color: black;" >
+    <div class="row">
+    <div class="col-sm-6 ">
+        <p id="titulo"> <span style="color: rgb(200, 165, 102);">Donac</span><span style="color: rgb(188, 106, 12)">iones</span> </p> 
+        <p id="parrafo">
+            Como dijimos anteriormete estamos ayudando a una funcacion sin fines de lucro y si usted no puede comprar o no nesecita ningun
+            producto, habilitamos la siguiente casilla para que pueda realizar sus aportes o donaciones de manera voluntaria.
+        </p>
+        <br>
+        <div>
+            <div class="col-md">
+                <div class="card" style="margin-left: 250px;">
+                    <img src="{% static 'img/depositphotos_58371397-stock-photo-donation-box-dog.jpg' %}" class="imgBox" id="imagen" style="z-index: 1;margin-top: 20px;">
+                    <div class="details" style="background-color: black; z-index:1;" >
+            <!--Ventana popUp-->
+            <button class="btn btn-success" id="myBtn">Donar $</button>
+            <div id="myModal" class="modal">
+                <div class="modal-content">
+                    <span class="close">&times;</span>
+                    <p id="titulo"> <span style="color: rgb(200, 165, 102);">Fomulario d</span><span style="color: rgb(188, 106, 12)">e Donaciones</span> </p> 
+                    <!--Inicio Formulario poUp-->
+                    <div class="container">
+                        <form  id="doname" action="#" method="post" name="doname">
+                            <div class="form-group">
+                                <label for="nombrecom">Nombre Completo 🧑 </label>
+                                <input type="text" id="nombrecom" name="nombrecom" placeholder="Ingrese su nombre completo" required class="form-control" minlength="3"  onchange="uppertext(this)">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="TipoBanco">Entidad Bancaria 🏛 </label>
+                                <select id="TipoBanco" class="form-control" required>
+                                    <option value="" >Seleccione su banco </option>
+                                    <option value="1">BCI</option>
+                                    <option value="2">Itau</option>
+                                    <option value="3">Banco Estado</option>
+                                    <option value="4">Santander</option>
+                                    <option value="5">BBVA</option>
+                                    <option value="6">Scotiabank</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="TipoCuenta">Tipo de cuenta 💳</label>
+                                <select id="TipoCuenta" class="form-control" required>
+                                    <option value="" >Seleccione su cuenta.</option>
+                                    <option value="1">Ahorro</option>
+                                    <option value="2">Corriente</option>
+                                    <option value="3">Vista</option>
+                                    <option value="4">Chequera Electronicar</option>
+                                    
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="cuenta">Ingrese numero de cuenta 📈 </label>
+                                <input type="number" id="cuenta" name="cuenta" placeholder="XXXXXXXXXXXXXX" required
+                                    minlength="8" maxlength="16" class="form-control">
+                            </div>
+                
+                
+                            <div class="form-group">
+                                <label for="mail">Correo electrónico ✉️</label>
+                                <input type="text" id="mail" name="mail" required
+                                    placeholder="ejemplocontacto@xxxxx.com" class="form-control">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="monto">Monto 💵 </label>
+                                <input type="number" id="monto" name="monto" placeholder="$0000000" required
+                                    minlength="0" maxlength="16" min="1" class="form-control">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="mensaje">Recibo/Comprobante 💌</label>
+                                <textarea id="mensaje" class="form-control" rows="7" onmousemove="colorBlanco(this)" onmouseout="colorBrown(this)"></textarea>
+                            </div>
+
+                            <div class="form-check" >
+                                <input type="checkbox" id="check2" name="check2" class="form-check-input" value="1">
+                                <label for="check2" class="form-check-label" ><p>Esta de acuerdo para recibir nustras Informaciones al correo. </p></label>
+                            </div>
+                            <input type="submit" value="Donar" id="donar" class="btn btn-success" onclick="CrearCarta()">
+                            <br>
+                            <input type="#" value="Generar Recibo" id="donar" class="btn btn-success" onclick="CrearCarta()">
+                    </div>
+                </div>
+            </div>
+            <!--Fin ventana popUp-->
+            
+            </div>
+        </div>
+    </div>
+    </div>
+</div>
+    <div class="col-sm-6">
+        
+            <div>
+                <p id="titulo"> <span style="color: rgb(200, 165, 102);">¿Donde  </span><span style="color: rgb(188, 106, 12)">encontrarnos?</span> </p> 
+                <div class="map-responsive">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3326.62012214442!2d-70.7546862492779!3d-33.51125928066217!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9662dcd1fe0c7bab%3A0x4d17b82a7ba77488!2sDuoc%20UC%3A%20Sede%20Maipu!5e0!3m2!1ses-419!2scl!4v1680117243519!5m2!1ses-419!2scl" id="mapa" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+            </div>        
+        </div>
+    </div>
+</div>
+<!--Fin Del Del mapa y del Cuadro de donaciones.-->
+
+    <!--Inicio pie de pagina-->
+    <footer class="footer" id="piepagina"> 
+        <!--Container 1-->
+        <div class="container-fluid" style="background-color: rgb(0, 0, 0);">
+        <!--Elemento centrado.-->
+            
+            <a href="{% url 'inicio' %}">
+            <img src="{% static 'img/Cheemis logo grande transparente footer.png' %}" width="250px" height="250spx" 
+                alt="Cheemis Shop logo grande logo.png" id="centrar"> <!--Texto alternativo y tamaño de foto-->
+            </a>
+            
+        
+        <div class="row" id="columna" >
+        <div class="col-lg-3 col-md-6 d-flex">
+            <div>
+                <h4>Dirección</h4>
+                <h6>
+                    <img src="{% static 'img/ubicaicon png.png' %}" width="20px" height="20px" id="icono" alt="direccion png" >
+                    Av. Esq. Blanca 501 <br>
+                    Maipú , Región Metropolitana. <br>
+                </h6>
+            </div>
+        </div>
+
+        <div class="col-lg-3 col-md-6 d-flex ">
+            <div>
+                <h4>Contacto</h4>
+                <div class="row">
+                    <h6 id="centrar">
+                    <img src="{% static 'img/contacto png.png' %}" width="20px" height="20px"  id="icono" alt="telefono png" >
+                    +56944440438 <br>
+                    </h6>
+                </div>
+
+                <div class="row">
+                    <h6 id="centrars">
+                    <img src="{% static 'img/correo png.png' %}" width="20px" height="20px"  id="icono" alt="correo png" >
+                    cheemisshop@gmail.com <br>
+                    </h6>
+                </div>
+            </div>
+        </div>
+
+            <div class="col-lg-3 col-md-6 d-flex ">
+                <div>
+                    <h4>Horario</h4>
+                    <h6>
+                    <img src="{% static 'img/horario png.png' %}" width="20px" height="20px"  id="icono" alt="horario.png" >
+                    Atención: Lunes a Vienres <br>
+                    De 9:00 a 14:00 y 15:00 a 18:00 Horas.
+                    </h6>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-6 d-flex ">
+                <div>
+                    <h4>Nuestras Redes</h4>
+                    <p>
+                    <img src="{% static 'img/facebook png.png' %}" width="50px" height="50px" alt="facebook logo.png" style="margin-left: 15px;" >
+                    <img src="{% static 'img/intagram png.png' %}" width="50px" height="50px" alt="instagram logo.png" style="margin-left: 15px;">
+                    <img src="{% static 'img/twitter png.png' %}" width="50px" height="50px" alt="twitter logo.png" style="margin-left: 15px;">
+                    <img src="{% static 'img/linked in png.png' %}" width="50px" height="50px" alt="linked in  logo.png" style="margin-left: 15px;">
+                    </p>
+                </div>
+            </div>
+    </div>
+<!--Cierre Container 1.-->
+<br>
+
+<!--Inicio Container 2.-->
+    <div class="container-fluid">
+        <div class="copyright" id="copy">
+        &copy; Copyright <strong><span>Cheemis Pet Shop</span></strong>. 2023 All Rights Reserved
+        </div>
+    </div>
+<!--Cieere Container 2.-->
+
+</footer><!--Cierre pie de pagina.-->
+
+
+
+
+
+
+<!--Librerias de bootrap-->
+    <!--<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></scrip>-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>  
+    <script src="{% static 'js/PopUp.js' %}"></script>  
+</body>
+</html>

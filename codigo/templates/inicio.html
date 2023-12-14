@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cheemis Shop Inicio</title>
+    {% load static %}
+    <!--Icono -->
+    <link rel="shortcut icon" href="{% static 'img/basico.webp' %}">
+    <!--Acihivos Estaticos y librerias.-->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/jquery.validate.js"></script>
+    <script src="{% static 'js/Fomulario Validado.js' %}"></script>
+    
+    <script>
+        function showOptions() {
+            document.querySelector('.dropdown-content').style.display = 'block';
+        }
+
+        function hideOptions() {
+            document.querySelector('.dropdown-content').style.display = 'none';
+        }
+    </script>
+    
+
+
+</head>
+
+
+<body>
+    <!--Cabeza de pagina-->
+    <header id="header"  >
+        <div>
+        <!--Inicio menu desplegable (Hamburguesa).-->
+        <nav class="navbar navbar-expand-sm navbar-dark" style="background-color: rgb(0, 0, 0);">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#opciones">
+            <span class="navbar-toggler-icon"></span>
+            </button>
+            <!--Logo Cheemis.-->
+            <a href="{% static 'inicio.html' %}" class="navbar-brand" id="logocheemis">
+                <img src="{% static 'img/CHEEMS SHOP TRANSPARENTE.png' %}" width="65px" height="65px" alt="Cheemis Shop logo.png"> <!--Texto alternativo y tamaño de foto-->
+                Cheemis Pet Shop 
+            </a>
+
+            <div class= "collapse navbar-collapse " id="opciones" >
+                <!--Elementos dentro del menu desplegable.-->
+                <ul class="navbar-nav" >
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'inicio' %}" > Inicio </a>
+                    </li> 
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'catalogo_productos' %}" > Catálogo de Procuctos </a>
+                    </li> 
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'informacion' %}" > Quienes Somos </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'carrito_compras' %}" > Carrito de compras </a>
+                    </li>
+                    
+
+                    {% if user.is_staff %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'historial' %}"  > Historial de ventas </a>
+                    </li>
+                    {% endif %}
+                </ul>
+
+                
+            </div> 
+            <!--Boton inicio de sesion-->
+            
+                {% if user.is_authenticated %}
+                
+
+                <div class="dropdown">
+                    
+                    <a onclick="showOptions()" id="iniciosesion"   style="background-color: transparent;">
+                        <img src="{% static 'img/inicio-transparente.png' %}" width="40px">{{user.username}}
+                    </a>
+                    <div class="dropdown-content" onmouseout="hideOptions()">
+                        <div class="dropdown-content">
+                            <a href="{% url 'logout' %}" id="iniciosesion"   style="background-color: transparent;">
+                                Cerrar sesión
+                            </a>
+                            
+                            
+                        </div>
+                </div>
+                    
+                {% else %}
+
+                    <div class="dropdown">
+                            <a onclick="showOptions()" id="iniciosesion"   style="background-color: transparent;">
+                                <img src="{% static 'img/inicio-transparente.png' %}" width="40px">Usuario
+                            </a>
+                        
+                        <div class="dropdown-content" onclick="hideOptions()">
+                            <div class="dropdown-content">
+                                <a href="{% url 'login' %}" id="iniciosesion"   style="background-color: transparent;">
+                                    Iniciar Sesion
+                                </a>
+                                <a href="{% url 'registrar' %}" id="iniciosesion"   style="background-color: transparent;">
+                                    Registrarse
+                                </a>
+                                
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
+            </div> 
+        </nav> <!--Cierre de menu -->
+        
+        
+        </div>
+    </header><!--Cierre de cabezal de pagina.-->
+    
+
+    <!--apertura carrusel-->
+    <div class="container-fluid" style="background-color: black;">
+        <div id="carousel1" class="carousel slide" data-ride="carousel">
+            <ol class="carousel-indicators">
+                <li data-target="#carousel1" data-slide-to="0" class="active"></li>
+                <li data-target="#carousel1" data-slide-to="1"></li>
+                <li data-target="#carousel1" data-slide-to="2"></li>
+            </ol>
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <div class="carousel-caption">
+                        <h3 id="inTitulo">Salud</h3>
+                        <p id="inTexto">Para los regalones de casa tenemos lo que necesitan</p>
+                    </div>
+                    <img class="d-block w-100" src="{% static 'img/perro_tumbado_juguete-1110x600.jpg' %}" id="carouselImg">
+                </div>
+
+                <div class="carousel-item">
+                    <div class="carousel-caption">
+                        <h3 id="inTitulo">Limpieza</h3>
+                        <p id="inTexto">Porque siempre es importante mantenerlos limpios, aunque no quieran</p>
+                    </div>
+                    <img class="d-block w-100" src="{% static 'img/gato_baño.jpg' %}" id="carouselImg">
+                </div>
+
+                <div class="carousel-item">
+                    <div class="carousel-caption">
+                    <h3 id="inTitulo">Alimentacion</h3>
+                    <p id="inTexto">En la variedad de alimentacion de su mascota esta el gusto</p>
+                    </div>
+                    <img class="d-block w-100" src="{% static 'img/loro.webp' %}" id="carouselImg">
+                </div>
+
+            </div>
+            <a class="carousel-control-prev" href="#carousel1" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>                
+                <span class="sr-only">previous</span>
+            </a>
+
+            <a class="carousel-control-next" href="#carousel1" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>                
+                <span class="sr-only">next</span>
+            </a>
+
+        </div><!--cierre carousel-->
+<br>
+<br>
+<!--Inicio del Cuerpo-->
+
+
+
+
+<!--Inicio De la informacion De presentacion.-->
+<div class="jumbotron" style="background-color: black;">
+    <div class="row">
+    <div class="col-sm-6 ">
+        
+        <div>
+        <img src="{% static 'img/mono_piquiblainder.jpg' %}" id="imagen">
+        </div>
+    </div>
+    <div class="col-sm-6">
+        <p id="titulo"> <span style="color: rgb(200, 165, 102);">Bienvenidos a </span><span style="color: rgb(188, 106, 12)">Cheemis Shop</span> </p> 
+        <p id="parrafo">Somos una pequeña tienda online donde poseemos todo lo necesario para el bienestar de su 
+            mascota,dentro de nuestro amplio catalogo de productos.
+        
+        </p>
+        <p id="titulo"> <span style="color: rgb(200, 165, 102);">Nuestros </span><span style="color: rgb(188, 106, 12)">Productos</span> </p> 
+        <p id="parrafo">
+            Nuestros productos van desde comodos platos, con ropa monisima hasta accesorios tanto de salud como de ocio, entre otros. 
+            Ademas trabajamos con una variedad de mascostastales como:perros, gatos, pajaros y hamsters.
+            <br> 
+            Donde prontramente agregaremos mas tipos mascotas a nuestros servicios.
+        </p>
+
+        <p id="titulo"> <span style="color: rgb(200, 165, 102);">¿Por que com</span><span style="color: rgb(188, 106, 12)">prar con nosotros?</span> </p> 
+        <p id="parrafo">
+        Al comprar con nosotros estas ayudando a una fundacion sin fines de lucro que vela y protege a mascotas sin hogar.
+        </p>
+    </div>
+</div>
+</div>
+<!--Fin De la informacion De presentacion.-->
+
+
+<!--Api indicadores economicos.-->
+
+<div class="jumbotron" style="background-color: black;">
+    <div>
+        <p id="titulo"> <span style="color: rgb(200, 165, 102);">Divi</span><span style="color: rgb(188, 106, 12)">sas</span> </p> 
+        <p id="parrafo" > En este apartado podra encontrar la informacion de las distintas divisas que trabajamos en precio Chileno para
+            que usted consumidor pueda realizar una correcta gestion y no tenga dudas al momento de comprar.
+        </p>
+
+        <br>
+
+
+        <div class="table-responsive" >
+            <table class="table table-dark table-hover "  >
+                <thead>
+                    <tr>
+                        <th> Codigo </th>
+                        <th> Nombre  </th>
+                        <th> Valor en CLP $</th>
+                        <th> Fecha de Actualización </th>
+                    </tr>
+                </thead>
+                <tbody id="data">
+                </tbody>
+            </table>
+        </div>
+        
+    </div>
+
+</div>
+<!-- Fin Api indicadores economicos.-->
+
+<!--Inicio Del Formulrio de contacto.-->
+<div class="jumbotron" style="background-color: black;">
+    <p id="titulo"> <span style="color: rgb(200, 165, 102);">Formulario d</span><span style="color: rgb(188, 106, 12)">e Contacto</span> </p>
+    <div class="container">
+        <form  id="contactame" action="#" method="post" name="contactame">
+            <div class="form-group">
+                <label for="nombre">Nombre 🧑 </label>
+                <input type="text" id="nombre" name="nombre" placeholder="Ingrese su nombre" required class="form-control" minlength="3" onchange="uppertext(this)">
+            </div>
+
+            <div class="form-group">
+                <label for="apellido">Apellido 🧑 </label>
+                <input type="text" id="apellido" name="apellido" placeholder="Ingrese su apellido" required class="form-control" minlength="4" onchange="uppertext(this)">
+            </div>
+
+            <div class="form-group">
+                <label for="correo">Correo electrónico ✉️</label>
+                <input type="text" id="correo" name="correo" required
+                    placeholder="ejemplocontacto@xxxxx.com" class="form-control">
+            </div>
+
+            <div class="form-group">
+                <label for="fono">Teléfono ☎️</label>
+                <input type="number" id="fono" name="fono" placeholder="XXXXXXXXX" required
+                    minlength="9" class="form-control">
+            </div>
+
+            <div class="form-group">
+                <label for="fecha">Fecha de nacimiento 📅 </label>
+                <input type="date" id="fecha" name="fecha" required 
+                    max="2005-01-01" class="form-control">
+            </div>
+
+            <div class="form-group">
+                <label for="genero">Género ⚧</label>
+                <select id="genero" class="form-control" required>
+                    <option value="" >Seleccione Genero.</option>
+                    <option value="1">Mujer</option>
+                    <option value="2">Hombre</option>
+                    <option value="3">Otro</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="mascota">Mascota 🐶</label>
+                <select id="mascota" class="form-control" required >
+                    <option value="">Seleccione Tipo de Mascota.</option>
+                    <option value="1">Perros</option>
+                    <option value="2">Gatos</option>
+                    <option value="3">Conejos</option>
+                    <option value="4">Pajaros</option>
+                    <option value="5">Hamsters</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="escribenos">Escribenos 💌</label>
+                <textarea id="mensaje" class="form-control" rows="7"  placeholder="Escribenos aca" minlength="25" required></textarea>
+            </div>
+
+            
+
+            <div class="form-check" >
+                <input type="checkbox" id="check1" name="check1" class="form-check-input" value="1">
+                <label for="check1" class="form-check-label" ><p>Esta de acuerdo para recibir nustras promociones al correo. </p></label>
+            </div>
+            <input type="submit" value="Enviar" id="enviar" class="btn btn-success">
+    </div>
+
+</div>
+<!--Fin Del Formulrio de contacto.-->
+
+
+    <!--Inicio pie de pagina-->
+    <footer class="footer" id="piepagina"> 
+        <!--Container 1-->
+        <div class="container-fluid" style="background-color: rgb(0, 0, 0);">
+        <!--Elemento centrado.-->
+            
+            <a href="{% url 'inicio' %}">
+            <img src="{% static 'img/Cheemis logo grande transparente footer.png' %}" width="250px" height="250spx" 
+                alt="Cheemis Shop logo grande logo.png" id="centrar"> <!--Texto alternativo y tamaño de foto-->
+            </a>
+            
+        
+        <div class="row" id="columna" >
+        <div class="col-lg-3 col-md-6 d-flex">
+            <div>
+                <h4>Dirección</h4>
+                <h6>
+                    <img src="{% static 'img/ubicaicon png.png' %}" width="20px" height="20px" id="icono" alt="direccion png" >
+                    Av. Esq. Blanca 501 <br>
+                    Maipú , Región Metropolitana. <br>
+                </h6>
+            </div>
+        </div>
+
+        <div class="col-lg-3 col-md-6 d-flex ">
+            <div>
+                <h4>Contacto</h4>
+                <div class="row">
+                    <h6 id="centrar">
+                    <img src="{% static 'img/contacto png.png' %}" width="20px" height="20px"  id="icono" alt="telefono png" >
+                    +56944440438 <br>
+                    </h6>
+                </div>
+
+                <div class="row">
+                    <h6 id="centrars">
+                    <img src="{% static 'img/correo png.png' %}" width="20px" height="20px"  id="icono" alt="correo png" >
+                    cheemisshop@gmail.com <br>
+                    </h6>
+                </div>
+            </div>
+        </div>
+
+            <div class="col-lg-3 col-md-6 d-flex ">
+                <div>
+                    <h4>Horario</h4>
+                    <h6>
+                    <img src="{% static 'img/horario png.png' %}" width="20px" height="20px"  id="icono" alt="horario.png" >
+                    Atención: Lunes a Vienres <br>
+                    De 9:00 a 14:00 y 15:00 a 18:00 Horas.
+                    </h6>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-6 d-flex ">
+                <div>
+                    <h4>Nuestras Redes</h4>
+                    <p>
+                    <img src="{% static 'img/facebook png.png' %}" width="50px" height="50px" alt="facebook logo.png" style="margin-left: 15px;" >
+                    <img src="{% static 'img/intagram png.png' %}" width="50px" height="50px" alt="instagram logo.png" style="margin-left: 15px;">
+                    <img src="{% static 'img/twitter png.png' %}" width="50px" height="50px" alt="twitter logo.png" style="margin-left: 15px;">
+                    <img src="{% static 'img/linked in png.png' %}" width="50px" height="50px" alt="linked in  logo.png" style="margin-left: 15px;">
+                    </p>
+                </div>
+            </div>
+    </div>
+<!--Cierre Container 1.-->
+<br>
+
+<!--Inicio Container 2.-->
+    <div class="container-fluid">
+        <div class="copyright" id="copy">
+        &copy; Copyright <strong><span>Cheemis Pet Shop</span></strong>. 2023 All Rights Reserved
+        </div>
+    </div>
+<!--Cieere Container 2.-->
+
+</footer><!--Cierre pie de pagina.-->
+
+    
+
+        
+        
+
+    <!--Librerias de bootrap-->
+    <!--<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></scrip>-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>  
+    
+    
+    
+</body>
+</html>

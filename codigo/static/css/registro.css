@@ -1,0 +1,113 @@
+/*registro*/
+.card{
+    width: 750px;
+    height: 650px;
+    background-color: #000000;
+    border-radius: 15px;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgb(200, 165, 102);
+    margin-right: auto;
+    margin-left: auto;
+    align-self: center;
+}
+
+.card::after{
+    content: "";
+    width: 95%;
+    height: 95%;
+    background: #000000;
+    position: absolute;
+    border-radius: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.card::before{
+    content: "";
+    background: conic-gradient(#c8a566 20%  20deg,
+    transparent 120deg);
+    width: 105%;
+    height: 105%;
+    position: absolute;
+    animation: rotate 2s linear infinite;
+}
+
+@keyframes rotate{
+    0%{
+        transform: rotate(0deg);
+    }
+    100%{
+        transform: rotate(-360deg);
+    }
+}
+
+.card>.imgBox{
+    position: relative;
+    min-width: 300px;
+    width: 90%;
+    height: 90%;
+    display: flex;
+    transition: 0.5s;
+    align-items: center ;
+    justify-content: center;
+    
+}
+
+#enviar{
+    color:  rgb(188, 106, 12);
+    border: 5px solid  rgb(188, 106, 12);
+    width: 130px;
+    height: 60px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: auto;
+    margin-bottom: 5px;
+    font-size: 13px;
+    background-color: black;
+    font-family: monospace;
+}
+
+#enviar:hover{
+    color:rgb(200, 165, 102);
+    border: 5px solid rgb(200, 165, 102);
+    width: 130px;
+    height: 60px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 5px;
+    font-size: 13px;
+}
+
+#enviar2{
+    color:  rgba(235, 120, 13, 0.726);
+    border: 5px solid  rgb(218, 145, 10);
+    width: 130px;
+    height: 60px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: auto;
+    margin-bottom: 5px;
+    font-size: 13px;
+    background-color: black;
+    font-family: monospace;
+}
+
+#enviar2:hover{
+    color:rgba(235, 120, 13, 0.726);
+    border: 5px solid rgb(218, 145, 10);
+    width: 130px;
+    height: 60px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 5px;
+    font-size: 13px;
+}
